@@ -113,7 +113,7 @@ window.onload = function() {
 
 
 <!-- Start of LiveChat (www.livechatinc.com) code -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 window.__lc = window.__lc || {};
 window.__lc.license = 9852060;
 (function() {
@@ -121,10 +121,10 @@ window.__lc.license = 9852060;
   lc.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.livechatinc.com/tracking.js';
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(lc, s);
 })();
-</script>
+</script> -->
 <noscript>
-<a href="https://www.livechatinc.com/chat-with/9852060/">Chat with us</a>,
-powered by <a href="https://www.livechatinc.com/?welcome" rel="noopener" target="_blank">LiveChat</a>
+<!-- <a href="https://www.livechatinc.com/chat-with/9852060/">Chat with us</a>, -->
+<!-- powered by <a href="https://www.livechatinc.com/?welcome" rel="noopener" target="_blank">LiveChat</a> -->
 </noscript>
 <!-- End of LiveChat code -->
 <script type="text/javascript" src="https://cdn11.bigcommerce.com/shared/bower/checkout-sdk/dist/checkout-button.umd-165446dd1b865a9c314ea950307e8536bd6c6974.js" defer></script>
@@ -177,32 +177,31 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
     <div class="container">
             <ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
         <li class="breadcrumb " itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                <a href="https://au.skda.com.au/" class="breadcrumb-label" itemprop="item">Home</a>
+                <a href="<?php echo base_url(); ?>" class="breadcrumb-label" itemprop="item">Home</a>
             <meta itemprop="position" content="0" />
         </li>
         <li class="breadcrumb " itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                <a href="https://au.skda.com.au/seat-covers/" class="breadcrumb-label" itemprop="item">Custom Seat Covers</a>
+                <a href="" class="breadcrumb-label" itemprop="item">Produk</a>
             <meta itemprop="position" content="1" />
         </li>
+        <?php foreach ($mproduct as $t) { ?>
         <li class="breadcrumb " itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                <a href="https://au.skda.com.au/alta-motors-2/" class="breadcrumb-label" itemprop="item">ALTA Motors</a>
+                <a href="" class="breadcrumb-label" itemprop="item"><?php echo $t->nama; ?></a>
             <meta itemprop="position" content="2" />
         </li>
-        <li class="breadcrumb is-active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                <a href="https://au.skda.com.au/alta-rippled-seat-cover-black/" class="breadcrumb-label" itemprop="item">ALTA Rippled Seat Cover - BLACK</a>
-            <meta itemprop="position" content="3" />
-        </li>
+        <?php } ?>
 </ul>
 
 
     <div itemscope itemtype="http://schema.org/Product">
         <div class="productView">
 
+	<?php foreach ($mproduct as $t) { ?>
     <section class="productView-details">
         <div class="productView-product">
-            <h1 class="productView-title" itemprop="name">ALTA Rippled Seat Cover - BLACK</h1>
+            <h1 class="productView-title" itemprop="name"><?php echo $t->nama; ?></h1>
                 <h2 class="productView-brand" itemprop="brand" itemscope itemtype="http://schema.org/Brand">
-                    <a href="https://au.skda.com.au/alta-motors-1/" itemprop="url"><span itemprop="name">ALTA Motors</span></a>
+                    <span itemprop="name"><?php echo $t->ket; ?></span>
                 </h2>
             <div class="productView-price">
                     
@@ -218,6 +217,11 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
                 
             </span>
         </div>
+        <div class="productView-info">
+                        <dt class="productView-info-name">Akan Diproses 2 Sampai 3 Hari</dt>
+
+
+            </div>
         <div class="price-section price-section--withTax" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
             <span class="price-label" >
                 
@@ -225,7 +229,22 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
             <span class="price-now-label" style="display: none;">
                 Now:
             </span>
-            <span data-product-price-with-tax class="price price--withTax">AUD $100.00</span>
+            <span data-product-price-with-tax class="price price--withTax">RP <?php echo number_format($t->harga); ?></span>
+
+			<span data-product-price-with-tax class="price price--withTax">
+				<form id="form" action="<?php echo base_url('shop/add'); ?>" method="post">
+					<input type="hidden" name="kode" value="<?php echo $t->kode; ?>" />
+					<input type="hidden" name="nama" value="<?php echo $t->nama; ?>" />
+					<input type="hidden" name="harga" value="<?php echo $t->harga; ?>" />
+					<!-- <button type="submit" class="btn btn-primary btn-cart" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button> -->
+					<input type="submit" id="form-action-addToCart" data-wait-message="Adding to cart…" class="button button--primary" type="submit"
+				value="Add to Cart">
+				</form>
+				<!-- <div class="form-action">
+				<input id="form-action-addToCart" data-wait-message="Adding to cart…" class="button button--primary" type="submit"
+				value="Add to Cart">
+			</div> -->
+			</span>
                 <meta itemprop="availability" content="">
                 <meta itemprop="itemCondition" itemtype="http://schema.org/OfferItemCondition" content="http://schema.org/Condition">
                 <div itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
@@ -243,619 +262,32 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
          </div>
             </div>
 
-            <!-- Begin Afterpay Stencil Snippet for BigCommerce v1.0.9 -->
-                    <p class="afterpay-paragraph" style="text-align:center; display:block; font-size:14px; text-transform:none;" data-currency=AUD>
-                        or make 4 interest-free payments of
-                        <strong class="afterpay-instalments">$25.00&nbsp;AUD</strong>
-                        fortnightly with
-                        <a style="display:inline-block; margin-bottom:10px;" target="_blank" href="https://www.afterpay.com/terms">
-                            <img style="vertical-align:middle;" src="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png" srcset="https://static.afterpay.com/integration/product-page/logo-afterpay-colour.png 1x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@2x.png 2x, https://static.afterpay.com/integration/product-page/logo-afterpay-colour@3x.png 3x" width="100" height="21" alt="Afterpay">
-                            <span style="font-size:12px; display:inline-block;"> <u class="afterpay-link-inner">More info</u> </span>
-                            </a>
-                        </p>
-            <script type="text/javascript">
-              if (typeof Afterpay === 'undefined') {
-                var Afterpay = {};
-                Afterpay.loadScript = function(url, callback) {
-                  var script = document.createElement('script');
-                  script.type = 'text/javascript';
-                  if (script.readyState) { // I.E.
-                    script.onreadystatechange = function() {
-                      if (script.readyState == 'loaded' || script.readyState == 'complete') {
-                        script.onreadystatechange = null;
-                        callback();
-                      }
-                    };
-                  } else { // Others
-                    script.onload = function() {
-                      callback();
-                    };
-                  }
-                  script.src = url;
-                  document.getElementsByTagName('head')[0].appendChild(script);
-                };
-                Afterpay.$elements = null;
-                Afterpay.interval = null;
-
-                Afterpay.launchPopup = function($, event) {
-                    event.preventDefault();
-                    var currency = $(".afterpay-paragraph").attr('data-currency');
-                    var $popup_wrapper, $popup_outer, $popup_inner, $a, $img, $close_button;
-
-                    $popup_wrapper = $('#afterpay-popup-wrapper');
-
-                    if ($popup_wrapper.length > 0) {
-                      $popup_wrapper.show();
-                    } else {
-                      $popup_wrapper = $(document.createElement('div'))
-                        .attr('id', 'afterpay-popup-wrapper')
-                        .css({
-                          'position': 'fixed',
-                          'z-index': 999999999,
-                          'left': 0,
-                          'top': 0,
-                          'right': 0,
-                          'bottom': 0,
-                          'overflow': 'auto'
-                        })
-                        .appendTo('body')
-                        .on('click', function(event) {
-                          Afterpay.closePopup($, event);
-                        });
-
-                      $popup_outer = $(document.createElement('div'))
-                        .attr('id', 'afterpay-popup-outer')
-                        .css({
-                          'display': '-ms-flexbox',
-                          'display': '-webkit-flex',
-                          'display': 'flex',
-                          '-webkit-justify-content': 'center',
-                          '-ms-flex-pack': 'center',
-                          'justify-content': 'center',
-                          '-webkit-align-content': 'center',
-                          '-ms-flex-line-pack': 'center',
-                          'align-content': 'center',
-                          '-webkit-align-items': 'center',
-                          '-ms-flex-align': 'center',
-                          'align-items': 'center',
-                          'width': '100%',
-                          'min-height': '100%',
-                          'background-color': 'rgba(0, 0, 0, 0.80)'
-                        })
-                        .appendTo($popup_wrapper);
-
-                      $popup_inner = $(document.createElement('div'))
-                        .attr('id', 'afterpay-popup-inner')
-                        .css({
-                          'position': 'relative',
-                          'background-color': '#fff'
-                        })
-                        .appendTo($popup_outer);
-
-                      $a = $(document.createElement('a'));
-
-                      if (currency == 'USD') {
-                        $a.attr('href', 'https://www.afterpay.com/purchase-payment-agreement');
-                      } else {
-                        $a.attr('href', 'https://www.afterpay.com/terms');
-                      }
-
-                      $a
-                        .attr('target', '_blank')
-                        .css({
-                          'display': 'block'
-                        })
-                        .appendTo($popup_inner);
-
-                      $img = $(document.createElement('img'));
-
-                      if (currency == 'USD') {
-                        if ($(window).width() > 640) {
-                          $img.attr('src', 'https://static.afterpay.com/us-popup-medium.png');
-                        } else {
-                          $img.attr('src', 'https://static.afterpay.com/us-popup-small.png');
-                        }
-                      } else {
-                        if ($(window).width() > 640) {
-                          $img.attr('src', 'https://static.afterpay.com/lightbox-desktop.png');
-                        } else {
-                          $img.attr('src', 'https://static.afterpay.com/lightbox-mobile.png');
-                        }
-                      }
-
-                      $img
-                        .css({
-                          'display': 'block',
-                          'width': '100%'
-                        })
-                        .appendTo($a)
-                        .on('click', function(event) {
-                          event.stopPropagation();
-                        });
-
-                      $close_button = $(document.createElement('a'))
-                        .attr('href', '#')
-                        .css({
-                          'position': 'absolute',
-                          'right': '8px',
-                          'top': '8px'
-                        })
-                        .html('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1" width="32px" height="32px"><g id="surface1"><path style=" " d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 12.21875 10.78125 L 10.78125 12.21875 L 14.5625 16 L 10.78125 19.78125 L 12.21875 21.21875 L 16 17.4375 L 19.78125 21.21875 L 21.21875 19.78125 L 17.4375 16 L 21.21875 12.21875 L 19.78125 10.78125 L 16 14.5625 Z "/></g></svg>')
-                        .appendTo($popup_inner)
-                        .on('click', function(event) {
-                          Afterpay.closePopup($, event);
-                        });
-                    }
-                  };
-                  Afterpay.closePopup = function($, event) {
-                    event.preventDefault();
-
-                    $('#afterpay-popup-wrapper').hide();
-                  };
-                Afterpay.init = function($) {
-                    $('.afterpay-paragraph a').on('click', function(event) {
-                      Afterpay.launchPopup($, event);
-                    });
-                        var price_selector = '.productView-price .price--withTax';
-                  Afterpay.$elements = $(price_selector);
-                  if (Afterpay.$elements.length > 0) {
-                    Afterpay.interval = setInterval(function() {
-                      Afterpay.$elements.each(function(index, element) {
-                        var $element = $(element);
-                        var currency = $(".afterpay-paragraph").attr('data-currency');
-                        var amount = $element.text().replace(/[a-zA-Z$]+/g,'');
-                        if (amount >= 35.00 && amount <= 1000.00 && currency =='USD') {
-                          $(".afterpay-paragraph").show();
-                          var instalment_amount_in_cents = Math.round((amount / 4) * 100);
-                          var instalment_amount = (instalment_amount_in_cents / 100).toFixed(2);
-                          $(".afterpay-paragraph").find(".afterpay-text1").html("or 4 installments of <strong class='afterpay-instalments'>$"+instalment_amount+"&nbsp;"+currency+"</strong>&nbsp;with");
-                          $(".afterpay-paragraph").find(".afterpay-text2").html("");
-                          $(".afterpay-paragraph").find(".afterpay-link-inner").html('More Info');
-                        }else if (amount >= 0.04 && amount <= 1000.00 && currency != 'US' ) {
-                          $(".afterpay-paragraph").show();
-                          var instalment_amount_in_cents = Math.round((amount / 4) * 100);
-                          var instalment_amount = (instalment_amount_in_cents / 100).toFixed(2);
-                          $(".afterpay-instalments").html("$" + instalment_amount + "&nbsp;"+currency);
-                        } else if(currency == 'USD' && (amount <= 35.00 || amount >= 1000.00)) {
-                            $(".afterpay-paragraph").show();
-                            $(".afterpay-paragraph").find(".afterpay-text1").html("Installments by");
-                            $(".afterpay-paragraph").find(".afterpay-text2").html("available between $35.00 USD - $1000.00 USD");
-                            $(".afterpay-paragraph").find(".afterpay-link-inner").html('Learn More');
-                        } else {
-                          $(".afterpay-paragraph").hide();
-                        }
-                      });
-                    }, 500);
-                  }
-                };
-              } else {
-                if (Afterpay.interval !== null) {
-                  clearInterval(Afterpay.interval);
-                }
-              }
-              if (typeof jQuery_1_12_4 === 'function') {
-                Afterpay.init(jQuery_1_12_4);
-              } else if (typeof jQuery === 'undefined' || parseFloat(jQuery.fn.jquery) < 1.7) {
-                var jQuery_1_12_4;
-                Afterpay.loadScript('https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js', function() {
-                  jQuery_1_12_4 = jQuery.noConflict(true);
-                  Afterpay.init(jQuery_1_12_4);
-                });
-              } else {
-                Afterpay.init(jQuery);
-              }
-            </script>
-            <!-- End Afterpay Stencil Snippet for BigCommerce v1.0.9 -->
-
-
-            
-            <div class="productView-rating">
-                    <span class="productView-reviewLink">
-                        <a href="https://au.skda.com.au/alta-rippled-seat-cover-black/"
-                           data-reveal-id="modal-review-form">
-                           Write a Review
-                        </a>
-                    </span>
-                    <div id="modal-review-form" class="modal" data-reveal>
-    
-    
-    
-    
-    <div class="modal-header">
-        <h2 class="modal-header-title">Write a Review</h2>
-        <a href="#" class="modal-close" aria-label="Close" role="button">
-            <span aria-hidden="true">&#215;</span>
-        </a>
-    </div>
-    <div class="modal-body">
-        <div class="writeReview-productDetails">
-            <div class="writeReview-productImage-container">
-                <img class="lazyload" data-sizes="auto" src="https://cdn11.bigcommerce.com/s-4b0htg/stencil/7ab98780-51eb-0137-79d3-0242ac110003/e/54f12650-d33b-0136-1167-6fe0491fb18e/img/loading.svg" data-src="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/500x659/products/1226/6788/Alta2__03924.1557390820.png?c=2&amp;imbypass=on">
-            </div>
-            <h6 class="product-brand">ALTA Motors</h6>
-            <h5 class="product-title">ALTA Rippled Seat Cover - BLACK</h5>
         </div>
-        <form class="form writeReview-form" action="/postreview.php" method="post">
-            <fieldset class="form-fieldset">
-                <div class="form-field">
-                    <label class="form-label" for="rating-rate">Rating
-                        <small>Required</small>
-                    </label>
-                    <!-- Stars -->
-                    <!-- TODO: Review Stars need to be componentised, both for display and input -->
-                    <select id="rating-rate" class="form-select" name="revrating">
-                        <option value="">Select Rating</option>
-                                <option value="1">1 star (worst)</option>
-                                <option value="2">2 stars</option>
-                                <option value="3">3 stars (average)</option>
-                                <option value="4">4 stars</option>
-                                <option value="5">5 stars (best)</option>
-                    </select>
-                </div>
 
-                <!-- Name -->
-                    <div class="form-field" id="revfromname" data-validation="" >
-    <label class="form-label" for="revfromname_input">Name
-        
-    </label>
-    <input type="text" id="revfromname_input" data-label="Name" name="revfromname"  class="form-input" aria-required="" >
-</div>
-
-
-                <!-- Review Subject -->
-                <div class="form-field" id="revtitle" data-validation="" >
-    <label class="form-label" for="revtitle_input">Review Subject
-        <small>Required</small>
-    </label>
-    <input type="text" id="revtitle_input" data-label="Review Subject" name="revtitle"  class="form-input" aria-required="true" >
-</div>
-
-                <!-- Comments -->
-                <div class="form-field" id="revtext" data-validation="">
-    <label class="form-label" for="revtext_input">Comments
-            <small>Required</small>
-    </label>
-    <textarea name="revtext" id="revtext_input" data-label="Comments" rows="" aria-required="true" class="form-input" ></textarea>
-</div>
-
-                
-
-                <div class="form-field">
-                    <input type="submit" class="button button--primary"
-                           value="Submit Review">
-                </div>
-                <input type="hidden" name="product_id" value="1226">
-                <input type="hidden" name="action" value="post_review">
-                
-            </fieldset>
-        </form>
-    </div>
-</div>
-            </div>
-            
-            <dl class="productView-info">
-                        <dt class="productView-info-name">Shipping:</dt>
-                        <dd class="productView-info-value">Calculated at Checkout</dd>
-
-
-            </dl>
-        </div>
     </section>
+	<?php } ?>
 
+	<?php foreach ($mproduct as $t) { ?>
     <section class="productView-images" data-image-gallery>
         <figure class="productView-image"
                 data-image-gallery-main
-                data-zoom-image="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/1280x1280/products/1226/6788/Alta2__03924.1557390820.png?c=2&amp;imbypass=on"
+                data-zoom-image="<?php echo base_url('gopanel/uploads/barang/'.$t->image); ?>"
                 >
             <div class="productView-img-container">
-                    <a href="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/1280x1280/products/1226/6788/Alta2__03924.1557390820.png?c=2&amp;imbypass=on">
+                    <a href="<?php echo base_url('gopanel/uploads/barang/'.$t->image); ?>">
 
                 <img class="productView-image--default lazyload"
                      data-sizes="auto"
-                     src="https://cdn11.bigcommerce.com/s-4b0htg/stencil/7ab98780-51eb-0137-79d3-0242ac110003/e/54f12650-d33b-0136-1167-6fe0491fb18e/img/loading.svg"
-                     data-src="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/500x659/products/1226/6788/Alta2__03924.1557390820.png?c=2&amp;imbypass=on"
-                     alt="ALTA Rippled Seat Cover - By SKDA" title="ALTA Rippled Seat Cover - By SKDA" data-main-image>
+                     src="<?php echo base_url('gopanel/uploads/barang/'.$t->image); ?>"
+                     data-src="<?php echo base_url('gopanel/uploads/barang/'.$t->image); ?>"
+                     alt="<?php echo $t->nama; ?>" title="<?php echo $t->nama; ?>" data-main-image>
 
                     </a>
             </div>
         </figure>
-        <ul class="productView-thumbnails">
-                <li class="productView-thumbnail">
-                    <a
-                        class="productView-thumbnail-link"
-                        href="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/500x659/products/1226/6788/Alta2__03924.1557390820.png?c=2"
-                        data-image-gallery-item
-                        data-image-gallery-new-image-url="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/500x659/products/1226/6788/Alta2__03924.1557390820.png?c=2"
-                        data-image-gallery-zoom-image-url="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/1280x1280/products/1226/6788/Alta2__03924.1557390820.png?c=2">
-                        <img class="lazyload" data-sizes="auto" src="https://cdn11.bigcommerce.com/s-4b0htg/stencil/7ab98780-51eb-0137-79d3-0242ac110003/e/54f12650-d33b-0136-1167-6fe0491fb18e/img/loading.svg" data-src="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/50x50/products/1226/6788/Alta2__03924.1557390820.png?c=2" alt="ALTA Rippled Seat Cover - By SKDA" title="ALTA Rippled Seat Cover - By SKDA">
-                    </a>
-                </li>
-                <li class="productView-thumbnail">
-                    <a
-                        class="productView-thumbnail-link"
-                        href="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/500x659/products/1226/6787/Seat-Cover-Photo__55625.1557390792.png?c=2"
-                        data-image-gallery-item
-                        data-image-gallery-new-image-url="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/500x659/products/1226/6787/Seat-Cover-Photo__55625.1557390792.png?c=2"
-                        data-image-gallery-zoom-image-url="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/1280x1280/products/1226/6787/Seat-Cover-Photo__55625.1557390792.png?c=2">
-                        <img class="lazyload" data-sizes="auto" src="https://cdn11.bigcommerce.com/s-4b0htg/stencil/7ab98780-51eb-0137-79d3-0242ac110003/e/54f12650-d33b-0136-1167-6fe0491fb18e/img/loading.svg" data-src="https://cdn11.bigcommerce.com/s-4b0htg/images/stencil/50x50/products/1226/6787/Seat-Cover-Photo__55625.1557390792.png?c=2" alt="MASTER Gripper Seat Covers - by SK Designs Australia" title="MASTER Gripper Seat Covers - by SK Designs Australia">
-                    </a>
-                </li>
-        </ul>
     </section>
+<?php } ?>
 
-    <article class="productView-description" itemprop="description">
-            <p class="productView-title">Description</p>
-<div class="productView-description">
-    <div class="show-more-container less">
-        <div class="show-more-content">
-        <p>SKDA Custom Seat Covers are custom made to order, here in Adelaide, South Australia.<br />These covers are hand made using the highest quality of gripper material and thick ripples for traction and mobility. All Colours are OEM colours, ready to improve the appearance of your bike, whilst giving you more grip and control of your bike.&nbsp;</p>
-<p><strong>CUSTOMIZE:&nbsp;</strong>&nbsp;Our Seat Covers give a broad range of options that allow you to customize the side, top and ripple colours of each seat individually.</p>
-<p><strong>QUICK TURN AROUND:&nbsp;</strong>All of our orders are shipped out using the quickest possible method in express shipping.<strong>&nbsp;</strong>You can usually expect the cover to ship in around 1-2 weeks from date of payment.&nbsp;</p>
-        <!-- snippet location product_description -->
-        </div>
-        <div class="show-more-link">
-            <div class="show-more-link__text closed">
-                <span>Read more</span>
-                <i class="icon" aria-hidden="true">
-                    <svg>
-                        <use xlink:href="#icon-keyboard-arrow-down"></use>
-                    </svg>
-                </i>
-            </div>
-            <div class="show-more-link__text open">
-                <span>Read less</span>
-                <i class="icon" aria-hidden="true">
-                    <svg>
-                        <use xlink:href="#icon-keyboard-arrow-up"></use>
-                    </svg>
-                </i>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script>
-    (function() {
-        var showMoreContainers = document.getElementsByClassName('show-more-container');
-
-        for (var i in showMoreContainers) {
-            if (showMoreContainers.hasOwnProperty(i)) {
-                var container = showMoreContainers[i];
-
-                var link = container.getElementsByClassName('show-more-link')[0];
-                var hide = true;
-                link.addEventListener('click', function() {
-                    hide = !hide;
-                    container.classList.toggle('less', hide);
-                });
-            }
-        }
-    })();
-</script>
-    </article>
-
-    <section class="productView-details">
-        <div class="productView-options">
-            <form class="form" method="post" action="https://au.skda.com.au/cart.php" enctype="multipart/form-data"
-                  data-cart-item-add>
-                <input type="hidden" name="action" value="add">
-                <input type="hidden" name="product_id" value="1226"/>
-                <div data-product-option-change style="display:none;" class="options">
-                        <div class="form-field" data-product-attribute="set-select">
-    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_select_21997">
-        Bike Model:
-
-            <small>Required</small>
-    </label>
-
-    <select class="form-select form-select--small" name="attribute[21997]" id="attribute_select_21997" required>
-        <option value="">Choose Options</option>
-            <option data-product-attribute-value="1008" value="1008" >ALTA Redshift EXR</option>
-            <option data-product-attribute-value="1009" value="1009" >ALTA Redshift MXR</option>
-            <option data-product-attribute-value="1010" value="1010" >ALTA MX Motocross</option>
-            <option data-product-attribute-value="1011" value="1011" >ALTA EX Enduro</option>
-            <option data-product-attribute-value="1012" value="1012" >ALTA SM Supermoto</option>
-    </select>
-</div>
-
-                        <div class="form-field" data-product-attribute="input-text">
-    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_text_21998">
-        Bike Year:
-
-            <small>Required</small>
-    </label>
-
-    <input class="form-input form-input--small" type="text" id="attribute_text_21998" name="attribute[21998]" placeholder="" required>
-</div>
-
-                        <div class="form-field" data-product-attribute="set-select">
-    <label class="form-label form-label--alternate form-label--inlineSmall" for="attribute_select_21999">
-        Ripples Colour:
-
-            <small>Required</small>
-    </label>
-
-    <select class="form-select form-select--small" name="attribute[21999]" id="attribute_select_21999" required>
-        <option value="">Choose Options</option>
-            <option data-product-attribute-value="1262" value="1262" >Black</option>
-            <option data-product-attribute-value="1263" value="1263" >White</option>
-            <option data-product-attribute-value="1264" value="1264" >Honda Red</option>
-            <option data-product-attribute-value="1265" value="1265" >Yamaha Blue</option>
-            <option data-product-attribute-value="1266" value="1266" >Kawasaki Green</option>
-            <option data-product-attribute-value="1267" value="1267" >KTM Orange</option>
-            <option data-product-attribute-value="1268" value="1268" >Suzuki Yellow</option>
-            <option data-product-attribute-value="1269" value="1269" >Navy Blue</option>
-            <option data-product-attribute-value="1270" value="1270" >Hot Pink</option>
-            <option data-product-attribute-value="1283" value="1283" >Steel Grey</option>
-    </select>
-</div>
-
-                </div>
-                <script>
-                    window.addEventListener('load', function() {
-                        var isSticker = document.querySelector('.breadcrumbs > .breadcrumb:nth-child(3) a').text === 'Custom MX Graphics Kits';
-                        if (!isSticker)
-                            return;
-
-                        function getOptionLabel(option) {
-                            if (option.nodeType === Node.TEXT_NODE) {
-                                return null;
-                            }
-
-                            for (var j = 0; j < option.childNodes.length; j++) {
-                                if (option.childNodes[j].nodeType == Node.ELEMENT_NODE && option.childNodes[j].tagName === "LABEL") {
-                                    return option.childNodes[j];
-                                }
-                            }
-                        }
-
-                        function getOptionName(option) {
-                            var label = getOptionLabel(option);
-
-                            if (label == null) {
-                                return null;
-                            }
-                            try {
-                                var text = label.childNodes[0].textContent.trim()
-                                return text;
-                            } catch (e) {
-                                return null;
-                            }
-                        }
-
-                        function stringBeginsWith(haystack, needle) {
-                            return haystack.substr(0, needle.length) === needle;
-                        }
-
-                        var optionsElement = document.querySelector('.productView-options .options');
-                        var options = optionsElement.childNodes;
-
-                        for (var i = 0; i < options.length; i++) {
-                            if (options.hasOwnProperty(i)) {
-                                var option = options[i];
-                                try {
-                                    var text = getOptionName(option);
-
-                                    if (text == null) {
-                                        continue;
-                                    }
-
-                                    var headerText = null;
-                                    if (stringBeginsWith(text, 'Product Selection:')) {
-                                        headerText = "Product Options";
-                                    } else if (stringBeginsWith(text, 'Bike Model')) {
-                                        headerText = 'Bike Details';
-
-                                        var info = 'This graphics kit is available to purchase for all the models in this list. We simply alter the design as needed to ﬁt into the correct graphics template for the model selected.';
-
-                                        var label = getOptionLabel(option);
-
-                                        label.innerHTML = label.innerHTML.replace(':', '<span class="desktop-infotip"> <span class="infotip" title="' + info + '">?</span> </span>:');
-                                        var p = document.createElement('p');
-                                        p.innerText = info;
-                                        p.classList.add('mobile-infotip')
-                                        label.parentNode.insertBefore(p, label.nextSibling);
-                                    } else if (stringBeginsWith(text, 'Rider Name') || stringBeginsWith(text, 'Name on Graphics')) {
-                                        headerText = 'Rider Details';
-                                    } else if (stringBeginsWith(text, 'Number Style')) {
-                                        var imgUrl = 'https://us.skda.com.au/product_images/uploaded_images/numberoptions.png';
-
-                                        var label = getOptionLabel(option);
-
-                                        label.innerHTML = 'Number Style (<a href="' + imgUrl + '" target="_BLANK">See Examples</a>):';
-                                    }
-
-                                    if (headerText !== null) {
-                                        var heading = document.createElement("h5");
-                                        heading.innerText = headerText;
-                                        heading.classList.add('border-above');
-                                        optionsElement.insertBefore(heading, option);
-                                        i++;
-                                    }
-                                } catch (e) {}
-                            }
-                        }
-                    });
-                </script>
-                <div class="form-field form-field--stock u-hiddenVisually">
-                    <label class="form-label form-label--alternate">
-                        Current Stock:
-                        <span data-product-stock></span>
-                    </label>
-                </div>
-                    <div class="form-field form-field--increments">
-    <label class="form-label form-label--alternate"
-           for="qty[]">Quantity:</label>
-
-    <div class="form-increment" data-quantity-change>
-        <button class="button button--icon" data-action="dec">
-            <span class="is-srOnly">Decrease Quantity:</span>
-            <i class="icon" aria-hidden="true">
-                <svg>
-                    <use xlink:href="#icon-keyboard-arrow-down"/>
-                </svg>
-            </i>
-        </button>
-        <input class="form-input form-input--incrementTotal"
-               id="qty[]"
-               name="qty[]"
-               type="tel"
-               value="1"
-               data-quantity-min="0"
-               data-quantity-max="0"
-               min="1"
-               pattern="[0-9]*"
-               aria-live="polite">
-        <button class="button button--icon" data-action="inc">
-            <span class="is-srOnly">Increase Quantity:</span>
-            <i class="icon" aria-hidden="true">
-                <svg>
-                    <use xlink:href="#icon-keyboard-arrow-up"/>
-                </svg>
-            </i>
-        </button>
-    </div>
-</div>
-
-<div class="alertBox productAttributes-message" style="display:none">
-    <div class="alertBox-column alertBox-icon">
-        <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
-    </div>
-    <p class="alertBox-column alertBox-message"></p>
-</div>
-    <div class="form-action">
-        <input id="form-action-addToCart" data-wait-message="Adding to cart…" class="button button--primary" type="submit"
-            value="Add to Cart">
-    </div>
-     <!-- snippet location product_addtocart -->
-            </form>
-        </div>
-        <div class="addthis_toolbox addthis_32x32_style">
-    <ul class="socialLinks">
-        <li class="socialLinks-item socialLinks-item--Facebook">
-            <a class="icon icon--Facebook" href="http://www.facebook.com/skdesignsaus">
-                <svg>
-                    <use xlink:href="#icon-facebook" />
-                </svg>
-                                  </a>
-        </li>
-        <li class="socialLinks-item socialLinks-item--Instagram">
-            <a class="icon icon--Instagram" href="http://instagram.com/skda.moto">
-                  </a>
-        </li>
-        <li class="socialLinks-item socialLinks-item--">
-            <a class="icon icon--" href="mailto:info@skda.com.au">
-                <svg>
-                    <use xlink:href="#icon-envelope" />
-                </svg>
-            </a>
-        </li>
-    </ul>
-</div>
-        <!-- snippet location product_details -->
-    </section>
 </div>
 
 <div id="previewModal" class="modal modal--large" data-reveal>
@@ -883,7 +315,8 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
 </div>
 
         <script>window.__webpack_public_path__ = "https://cdn11.bigcommerce.com/s-4b0htg/stencil/7ab98780-51eb-0137-79d3-0242ac110003/e/54f12650-d33b-0136-1167-6fe0491fb18e/dist/";</script>
-        <script src="https://cdn11.bigcommerce.com/s-4b0htg/stencil/7ab98780-51eb-0137-79d3-0242ac110003/e/54f12650-d33b-0136-1167-6fe0491fb18e/dist/theme-bundle.main.js"></script>
+        <script src="<?php echo base_url('assets/newats/main.js'); ?>"></script>
+        <!-- <script src="https://cdn11.bigcommerce.com/s-4b0htg/stencil/7ab98780-51eb-0137-79d3-0242ac110003/e/54f12650-d33b-0136-1167-6fe0491fb18e/dist/theme-bundle.main.js"></script> -->
 
         <script>
             // Exported in app.js

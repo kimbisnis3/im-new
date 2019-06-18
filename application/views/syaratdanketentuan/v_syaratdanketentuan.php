@@ -1,22 +1,25 @@
-<div class="content">
-	<div class="container-fluid"  style="max-width: 70%">
-		<div class="form-artikel">
-			<div class=""><?php foreach ($msyaratdanketentuan as $t)
-							{
-							?>
-							<div class="title">
-								<h2><?php echo $t->judul; ?></h2>
-							</div>
-					<img style="width: 50%;"  src="<?php echo base_url('gopanel/uploads/ketentuan/'.$t->image); ?>">
-					<div class="holder"></div>
-					<div class="articel" style="margin-top: 5%"><?php echo $t->artikel; ?></div>
-						<div class="clearfix"></div>
-					<?php } ?>
-					</div>
-				</div>
-				<div class="clearfix"></div>
+<div class="body">
+	
+	<div class="container">
+		
+		<ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+			<li class="breadcrumb " itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<a href="<?php echo base_url(); ?>" class="breadcrumb-label" itemprop="item">Home</a>
+				<meta itemprop="position" content="0" />
+			</li>
+			<li class="breadcrumb " itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<a href="" class="breadcrumb-label" itemprop="item">Terms and Condition</a>
+				<meta itemprop="position" content="1" />
+			</li>
+		</ul>
+		<main class="page">
+			<?php foreach ($msyaratdanketentuan as $t) { ?>
+			<h1 class="page-heading"><?php echo $t->judul; ?></h1>
+			<div class="page-content page-content--centered">
+				<img style="width: 50%; margin: 0 auto;" src="<?php echo base_url('gopanel/uploads/ketentuan/'.$t->image); ?>">
+				<p><p style="text-align: center;"><span style="font-family: verdana, geneva; font-size: small;"><span style="font-size: small; font-family: verdana, geneva;"><br /><span style="color: #312e29; background-color: #ffffff; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline;"><?php echo $t->artikel; ?></span></span></span></p></p>
 			</div>
-		</div>
-<script>
-$( ".syaratdanketentuan" ).addClass( "active" );
-</script>
+			<?php } ?>
+		</main>
+	</div>
+</div>

@@ -181,8 +181,16 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
                 data-cart-preview
                 data-dropdown="cart-preview-dropdown"
                 data-options="align:right"
-                href="/cart.php">
-                <span class="navUser-item-cartLabel">Cart</span> <span class="countPill cart-quantity">0</span>
+                href="<?php echo base_url(); ?>index.php/shop">
+                <span class="navUser-item-cartLabel">Cart </span> <?php  $rows = $this->cart->total_items() ?>
+        <?php
+        if ($rows != 0) {
+        echo '<span class="countPill countPill--positive cart-quantity">'.$rows.'</span>';
+        }
+        else {
+        echo "none";
+        }
+        ?>
             </a>
 
             <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
@@ -206,7 +214,7 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
 </nav>
 
         <h1 class="header-logo header-logo--center">
-            <a href="https://au.skda.com.au/">
+            <a href="<?php echo base_url() ?>">
             <?php foreach ($mlogo as $t) { ?>
             <div class="header-logo-image-container">
                 <img class="header-logo-image lazyload" data-sizes="auto" src="<?php echo base_url('gopanel/uploads/logo/'.$t->image ); ?>" data-src="<?php echo base_url('gopanel/uploads/logo/'.$t->image ); ?>" alt="SK Designs Australia" title="SK Designs Australia" style="width: 30%;">
