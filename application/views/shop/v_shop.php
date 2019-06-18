@@ -201,13 +201,14 @@
 
                 <div class="cart-actions">
                     <span>
-                    <a style="margin: 10px; background-color: #269abc; border-color: #1b6d85;" class="button button--primary" href="/checkout.php" title="Click here to proceed to checkout">Check out</a>
+                    <a style="margin: 10px; background-color: #269abc; border-color: #1b6d85;" class="button button--primary" href="<?php echo base_url('billing/guest'); ?>" title="Click here to proceed to checkout">Check out</a>
                     </span>
                     <span>
-                    <a style="margin: 10px;" class="button button--primary" href="/checkout.php" title="Click here to proceed to checkout">Update Cart</a>
+                    <input type="submit" style="margin: 10px;" class="button button--primary" title="Click here to proceed to checkout" value="Update Cart"></input>
                     </span>
+                    <?php echo form_close(); ?>
                     <span>
-                    <a style="margin: 10px; background-color: #d9534f; border-color: #d43f3a" class="button button--primary" href="/checkout.php" title="Click here to proceed to checkout">Clear Cart</a>
+                    <a style="margin: 10px; background-color: #d9534f; border-color: #d43f3a" class="button button--primary" href="<?php echo base_url('shop/delete'); ?>" title="Click here to proceed to checkout">Clear Cart</a>
                     </span>
                 </div>
 
