@@ -1,22 +1,13 @@
-<div class="content">
-	<div class="container-fluid"  style="max-width: 70%">
-		<div class="form-data">
-			<div class=""><?php foreach ($mabout as $t)
-							{
-							?>
-							<div class="title">
-								<h2><?php echo $t->judul; ?></h2>
-							</div>
-					<img style="width: 50%;"  src="<?php echo base_url('gopanel/uploads/profil/'.$t->image); ?>">
-					<div class="holder"></div>
-					<div class="" style="margin-top: 5%"><?php echo $t->artikel; ?></div>
-						<div class="clearfix"></div>
-					<?php } ?>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-<script>
-$( ".about" ).addClass( "active" );
-</script>
+<main class="page">
+
+<?php foreach ($mabout as $t) { ?>
+    <h1 class="page-heading"><?php echo $t->judul; ?></h1>
+
+<div class="page-content page-content--centered">
+	<img style="width: 50%; margin: 0 auto;" src="<?php echo base_url('gopanel/uploads/profil/'.$t->image); ?>">
+	<p><p style="text-align: center;"><span style="font-family: verdana, geneva; font-size: small;"><span style="font-size: small; font-family: verdana, geneva;"><br /><span style="color: #312e29; background-color: #ffffff; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline;"><?php echo $t->artikel; ?></span></span></span></p></p>
+
+</div>
+<?php } ?>
+
+</main>
