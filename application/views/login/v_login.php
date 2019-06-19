@@ -48,11 +48,12 @@
 		</ul>
 			<h1 class="page-heading">Sign in</h1>
 			<div class="login-row">
+				<?php echo $this->session->flashdata('message');?>
 				<form class="login-form form" action="<?php echo base_url();?>login/login" method="post">
 					
 					<div class="form-field">
 						<label class="form-label" for="login_email">Username:</label>
-						<input class="form-input" name="nama" id="login_email" type="email">
+						<input class="form-input" name="nama" type="text">
 					</div>
 					<div class="form-field">
 						<label class="form-label" for="login_pass">Password:</label>

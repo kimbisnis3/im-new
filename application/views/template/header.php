@@ -171,10 +171,24 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
             <li class="navUser-item">
                 <a class="navUser-action" href="/giftcertificates.php">Gift Certificates</a>
             </li> -->
+         <?php
+        $isLogin= $this->session->userdata('masuk');
+        if (isset($isLogin)!=true)
+        {
+        echo '   
         <li class="navUser-item navUser-item--account">
-                <a class="navUser-action" href="<?php echo base_url(); ?>login">Sign in</a>
-                    <span class="navUser-or">or</span> <a class="navUser-action" href="<?php echo base_url(); ?>register">Register</a>
+                <a class="navUser-action" href="'.base_url().'login">Sign in</a>
+                    <span class="navUser-or">or</span> <a class="navUser-action" href="'.base_url().'register">Register</a>
+        </li>';} else {
+          echo '   
+        <li class="navUser-item navUser-item--account">
+                <a class="navUser-action" href="'.base_url().'history">History</a>
         </li>
+        <li class="navUser-item navUser-item--account">
+                <a class="navUser-action" href="'.base_url().'logout">Logout</a>
+        </li>'
+        ;}?>
+
         <li class="navUser-item navUser-item--cart">
             <a
                 class="navUser-action"
@@ -188,7 +202,7 @@ var BCData = {"csrf_token":"3b1c6693bc0bb7e687c0f875feda3a6c5db2945dead1c922004a
         echo '<span class="countPill countPill--positive cart-quantity">'.$rows.'</span>';
         }
         else {
-        echo "none";
+        echo "";
         }
         ?>
             </a>
